@@ -31,7 +31,7 @@ class CapitaliseDelimit:
         return self.__do_capitalise(string, self.delimiters, self.words_to_ignore)
 
     @staticmethod
-    def __do_capitalise(string, delimiters: set[str], words_to_ignore: set[str]):
+    def __do_capitalise(string, delimiters: list[str], words_to_ignore: set[str]):
         """
         Recursively split string by given delimiters, then capitalise individual parts before joining them back together
         with the delimiter that the string was split by
