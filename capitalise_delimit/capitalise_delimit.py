@@ -2,15 +2,16 @@ from typing import Union
 
 
 class CapitaliseDelimit:
+    # list of popular syncategorematic words that may not always want to be capitalised
+    default_words_to_ignore = {'upon', 'at', 'the', 'on', 'in'}
 
     def __init__(self, delimiters: Union[list[str], set[str]]):
         # self.delimiters converted to set to ensure uniqueness of elements and back to list for use
         self.delimiters = self.__make_set_of_strings(delimiters, 'delimiters')
         self.delimiters = list(delimiters)
-        # list of popular syncategorematic words that may not always want to be capitalised
-        self.words_to_ignore = {'upon', 'at', 'the', 'on', 'in'}
+        self.custom_words_to_ignore = set()
 
-    def capitalise(self, string: str, ignore_words: bool = True,
+    def capitalise(self, string: str, ignore_words: bool = False,
                    custom_ignore_words: Union[list[str], set[str]] = None):
         """
         'do_capitalise' called separately as it is a recursive function and the parameter 'string' it takes in is
@@ -25,10 +26,19 @@ class CapitaliseDelimit:
         if not isinstance(string, str):
             raise TypeError(f"Please provide a string to be capitalised ({type(string)} provided)")
 
+        words_to_ignore = set()
+        if ignore_words:
+            words_to_ignore.update(self.default_words_to_ignore)
         if custom_ignore_words:
             custom_ignore_words = self.__make_set_of_strings(custom_ignore_words, 'custom ignore words')
-            self.words_to_ignore.update(custom_ignore_words)
-        return self.__do_capitalise(string, self.delimiters, self.words_to_ignore)
+            custom_ignore_words = {word.lower() for word in custom_ignore_words}
+            self.custom_words_to_ignore = custom_ignore_words
+        """
+        words_to_ignore is always updated with self.custom_words_to_ignore as the custom list is used for every 
+        capitalisation, hence why this is outside the if block
+        """
+        words_to_ignore.update(self.custom_words_to_ignore)
+        return self.__do_capitalise(string, self.delimiters, words_to_ignore)
 
     @staticmethod
     def __do_capitalise(string, delimiters: list[str], words_to_ignore: set[str]):
