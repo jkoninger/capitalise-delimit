@@ -60,10 +60,10 @@ the `custom_ignore_words` parameter. Note that this can be used on its own to de
 conjunction with `ignore_words` if you simply want to add some extra words on top of the existing list.
 
 Please also note that when passing a custom list of words, this is saved and used for future capitalisations called on
-that instance. The custom list must therefore be kept attention of, and can be updated upon every call of `.
-capitalise()`. To reset the custom list, simply pass in an empty list or set when you next call `.capitalise()`. The 
-value provided for `ignore_words` is also remembered, so if you supply the value `True` when invoking `.capitalise()
-`, all following capitalisation using the same class instance will run with `ignore_words=True` until it is manually 
+that instance. The custom list must therefore be kept attention of, and can be updated upon every call of 
+`capitalise()`. To reset the custom list, simply pass in an empty list or set when you next call `.capitalise()`. The 
+value provided for `ignore_words` is also remembered, so if you supply the value `True` when invoking `.capitalise()`, 
+all following capitalisation using the same class instance will run with `ignore_words=True` until it is manually 
 set back to `False`.
 
 ## Footnote
