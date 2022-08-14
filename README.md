@@ -4,7 +4,16 @@ A python library to capitalise words in a string based on a list of given delimi
 is useful when capitalising proper nouns that contain multiple different delimiting characters. An example might be
 double barreled names, e.g. where `jim-bob joe` needs to become `Jim-Bob Joe`
 
+PyPI build can be found [here](https://pypi.org/project/capitalise-delimit/).
+
 ## Installation
+
+Install this library using
+```
+pip install capitalise-delimit
+```
+
+or via PyPI, which is linked above.
 
 ## Get started
 
@@ -13,19 +22,19 @@ this library's functionality. You will need to instantiate this class with a lis
 class will be split by when being capitalised. Currently, the only supported functionality is the `capitalise` function.
 
 ```python
->> > from capitalise_delimit import CapitaliseDelimit
->> > my_str = 'a sample string'
->> > capitalise_space = CapitaliseDelimit([' '])
->> > capitalise_space.capitalise(my_str)
+>>> from capitalise_delimit import CapitaliseDelimit
+>>> my_str = 'a sample string'
+>>> capitalise_space = CapitaliseDelimit([' '])
+>>> capitalise_space.capitalise(my_str)
 'A Sample String'
 ```
 
 Another example:
 
 ```python
->> > name = 'jim-bob joe'
->> > CD_space_hyphen = CapitaliseDelimit([' ', '-'])
->> > CD_space_hyphen.capitalise(name)
+>>> name = 'jim-bob joe'
+>>> CD_space_hyphen = CapitaliseDelimit([' ', '-'])
+>>> CD_space_hyphen.capitalise(name)
 'Jim-Bob Joe'
 ```
 
@@ -43,15 +52,15 @@ These words are useful mostly when capitalising place names, such as _Stratford-
 would look like
 
 ```python
->> > capitalise_hyphen = CapitaliseDelimit(['-'])
->> > capitalise_hyphen.capitalise('stratford-upon-avon')
+>>> capitalise_hyphen = CapitaliseDelimit(['-'])
+>>> capitalise_hyphen.capitalise('stratford-upon-avon')
 'Stratford-Upon-Avon'
 ```
 
 However, if we don't want 'upon' to be capitalised, we can supply `True` as the `ignore_words` named parameter
 
 ```python
->> > capitalise_hyphen.capitalise('stratford-upon-avon', ignore_words=True)
+>>> capitalise_hyphen.capitalise('stratford-upon-avon', ignore_words=True)
 'Stratford-upon-Avon'
 ```
 

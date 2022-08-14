@@ -13,7 +13,7 @@ class CapitaliseDelimit:
         self.custom_words_to_ignore = set()
 
     def capitalise(self, string: str, ignore_words: bool = None,
-                   custom_ignore_words: Union[list[str], set[str]] = None):
+                   custom_ignore_words: Union[list[str], set[str]] = None) -> str:
         """
         'do_capitalise' called separately as it is a recursive function and the parameter 'string' it takes in is
         modified upon each invocation
@@ -48,7 +48,7 @@ class CapitaliseDelimit:
         return self.__do_capitalise(string, self.delimiters, words_to_ignore)
 
     @staticmethod
-    def __do_capitalise(string, delimiters: list[str], words_to_ignore: set[str]):
+    def __do_capitalise(string, delimiters: list[str], words_to_ignore: set[str]) -> str:
         """
         Recursively split string by given delimiters, then capitalise individual parts before joining them back together
         with the delimiter that the string was split by
@@ -70,7 +70,7 @@ class CapitaliseDelimit:
         return string
 
     @staticmethod
-    def __make_set_of_strings(items, param_name):
+    def __make_set_of_strings(items, param_name) -> set:
         try:
             items = set(items)
             if not all(isinstance(item, str) for item in items):
