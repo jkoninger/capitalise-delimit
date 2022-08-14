@@ -20,7 +20,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/jkoninger/capitalise-delimit",
     author="Jahan Köninger",
-    author_email="jck999992@@gmail.com",
+    author_email="jck999992@gmail.com",
     license="MIT",
     classifiers=[
         "Intended Audience :: Developers",
