@@ -9,9 +9,10 @@ class CapitaliseDelimit:
         # self.delimiters converted to set to ensure uniqueness of elements and back to list for use
         self.delimiters = self.__make_set_of_strings(delimiters, 'delimiters')
         self.delimiters = list(delimiters)
+        self.ignore_words = False
         self.custom_words_to_ignore = set()
 
-    def capitalise(self, string: str, ignore_words: bool = False,
+    def capitalise(self, string: str, ignore_words: bool = None,
                    custom_ignore_words: Union[list[str], set[str]] = None):
         """
         'do_capitalise' called separately as it is a recursive function and the parameter 'string' it takes in is
@@ -25,17 +26,23 @@ class CapitaliseDelimit:
         """
         if not isinstance(string, str):
             raise TypeError(f"Please provide a string to be capitalised ({type(string)} provided)")
+        if ignore_words is not None:
+            if not isinstance(ignore_words, bool):
+                raise TypeError(
+                    f"Please provide a boolean value for the 'ignore_words' parameter ({type(ignore_words)} provided)")
+            else:
+                self.ignore_words = ignore_words
 
         words_to_ignore = set()
-        if ignore_words:
+        if self.ignore_words:
             words_to_ignore.update(self.default_words_to_ignore)
         if custom_ignore_words:
             custom_ignore_words = self.__make_set_of_strings(custom_ignore_words, 'custom ignore words')
             custom_ignore_words = {word.lower() for word in custom_ignore_words}
             self.custom_words_to_ignore = custom_ignore_words
         """
-        words_to_ignore is always updated with self.custom_words_to_ignore as the custom list is used for every 
-        capitalisation, hence why this is outside the if block
+        words_to_ignore is always updated with self.custom_words_to_ignore as the custom list is saved and used for 
+        every capitalisation, hence why this is outside the if block
         """
         words_to_ignore.update(self.custom_words_to_ignore)
         return self.__do_capitalise(string, self.delimiters, words_to_ignore)
