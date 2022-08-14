@@ -31,7 +31,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Operating System :: OS Independent"
     ],
-    packages=["capitalise-delimit"],
+    packages=["capitalise_delimit"],
     include_package_data=True,
     install_requires=[]
 )
